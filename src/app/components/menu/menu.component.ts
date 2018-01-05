@@ -16,4 +16,8 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  changeTab(event) {
+    console.log('Fire some event when tab is selected...');
+    console.log(event);
+  }
 }

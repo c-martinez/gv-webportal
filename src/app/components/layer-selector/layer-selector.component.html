@@ -1,0 +1,15 @@
+<ul class="mdl-list">
+  <li *ngFor="let layer of layers" class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <!-- toggle layers on/off -->
+      <mdl-switch [(ngModel)]="layer.active" (ngModelChange)="toggleLayer(layer, $event)">{{ layer.name }}</mdl-switch>
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      ...
+    </span>
+  </li>
+</ul>
+<!-- Colored mini FAB button -->
+<button (click)="addLayer()" mdl-button mdl-button-type="mini-fab" mdl-colored="primary">
+  <mdl-icon>add</mdl-icon>
+</button>
