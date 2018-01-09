@@ -1,0 +1,29 @@
+<div>
+  <ng-select
+      [options]="tabOptions"
+      [(ngModel)]="selectedTab">
+  </ng-select>
+</div>
+
+<div [hidden]="selectedTab != 'circle'">
+  <div [formGroup]="circleForm">
+    <h3 class="mdl-dialog__title">App Login</h3>
+  
+    <div class="mdl-dialog__content">
+      <mdl-textfield  type="text" label="Center" formControlName="center" floating-label></mdl-textfield>
+      <br/>
+      <mdl-textfield type="text" label="Radius" formControlName="radius" floating-label></mdl-textfield>
+    </div>
+
+  </div>
+</div>
+
+<div [hidden]="selectedTab != 'freehand'">
+  Input options for free hand guide...
+</div>
+
+<div>
+  <button
+    mdl-button mdl-button-type="raised" mdl-colored="accent"
+    mdl-ripple (click)="doClose()">Create layer</button>
+</div>
