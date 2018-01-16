@@ -5,6 +5,10 @@
   </ng-select>
 </div>
 
+<div [hidden]="selectedTab != 'upload'">
+  Uploader goes here.
+</div>
+
 <div [hidden]="selectedTab != 'circle'">
   <div [formGroup]="circleForm">
     <h3 class="mdl-dialog__title">App Login</h3>

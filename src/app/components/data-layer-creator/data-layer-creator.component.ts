@@ -13,6 +13,7 @@ import { IOption } from 'ng-select';
 export class DataLayerCreatorComponent implements OnInit {
   private static ESC_KEY = 27;
   private static TAB_OPTIONS: Array<IOption> = [
+    {value: 'upload'  , label: 'Upload dataset'},
     {value: 'circle'  , label: 'Circular guide'},
     {value: 'freehand', label: 'Free hand guide'}
   ];
