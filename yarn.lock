@@ -3434,9 +3434,9 @@ ng-select@^1.0.0-rc.3:
   version "1.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0-rc.3.tgz#0d6ca53a475a0301e6d01e0c0a5568e183cb7a0d"
 
-ngx-dropzone-wrapper@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-5.3.1.tgz#994b1a84d29346bc87c67c1ef014640f0dfbfd6b"
+ngx-dropzone-wrapper@4.x.x:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-4.9.0.tgz#43351bc878c2cbe4bf4dc8d53ce8932a7e036afa"
   dependencies:
     dropzone "^5.2.0"
 

@@ -3,19 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { MdlDialogService } from '@angular-mdl/core';
 
 import { DataLayerCreatorComponent } from '../data-layer-creator/data-layer-creator.component';
+import { LayerService } from '../../services/layer.service';
 
 @Component({
   selector: 'app-layer-selector',
   templateUrl: './layer-selector.component.html',
-  styleUrls: ['./layer-selector.component.css']
+  styleUrls: ['./layer-selector.component.css'],
+  providers: [LayerService]
 })
 export class LayerSelectorComponent implements OnInit {
-  public layers = [
-    { name: 'Layer 1', id: 21, active: true },
-    { name: 'Layer 2', id: 24, active: false }
-  ];
+  public layers = this.layerService.getLayers();
 
-  constructor(private dialogService: MdlDialogService) { }
+  constructor(private dialogService: MdlDialogService, private layerService: LayerService) { }
 
   ngOnInit() {
   }
@@ -29,7 +28,7 @@ export class LayerSelectorComponent implements OnInit {
   public addLayer() {
     console.log('Trigger add layer...');
     const n = 25;
-    this.layers.push({ name: 'Layer N', id: n, active: false });
+    this.layerService.addLayer({ name: 'Layer N', id: n, active: false });
 
     /*const result = this.dialogService.confirm('Would you like a mug of coffee?', 'No', 'Yes');
     // if you need both answers
