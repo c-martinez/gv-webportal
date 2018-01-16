@@ -8,6 +8,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { SelectModule } from 'ng-select';
 
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MapComponent } from './components/map/map.component';
@@ -29,7 +31,8 @@ import { DataLayerCreatorComponent } from './components/data-layer-creator/data-
     ReactiveFormsModule,
     BrowserModule,
     SelectModule,
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    DropzoneModule
   ],
   entryComponents: [DataLayerCreatorComponent],
   providers: [],

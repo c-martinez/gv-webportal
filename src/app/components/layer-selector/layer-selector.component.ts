@@ -44,6 +44,7 @@ export class LayerSelectorComponent implements OnInit {
     this.dialogService.showCustomDialog({
       component: DataLayerCreatorComponent,
       isModal: true
+      // styles: {'width': '300px'}
     });
   }
 

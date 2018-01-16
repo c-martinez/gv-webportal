@@ -4,11 +4,14 @@ import { MdlDialogReference } from '@angular-mdl/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IOption } from 'ng-select';
 
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 @Component({
   selector: 'app-data-layer-creator',
   templateUrl: './data-layer-creator.component.html',
-  styleUrls: ['./data-layer-creator.component.css']
+  styleUrls: ['./data-layer-creator.component.css',
+  '../../../../node_modules/dropzone/dist/min/dropzone.min.css'
+]
 })
 export class DataLayerCreatorComponent implements OnInit {
   private static ESC_KEY = 27;
@@ -21,6 +24,14 @@ export class DataLayerCreatorComponent implements OnInit {
   private selectedTab = DataLayerCreatorComponent.TAB_OPTIONS[0].value;
 
   private circleForm: FormGroup;
+
+  public dropConfig: DropzoneConfigInterface = {
+    url: 'https://httpbin.org/post',
+    maxFiles: 1,
+    clickable: true,
+    createImageThumbnails: false,
+    paramName: 'uploadFile'
+  };
 
   constructor(private dialog: MdlDialogReference) { }
 
@@ -39,6 +50,17 @@ export class DataLayerCreatorComponent implements OnInit {
       this.doClose();
     }
   }
+
+  public onUploadSuccess(event: any) {
+    console.log('upload successful: ');
+    console.log(event);
+  }
+
+  public onUploadError(event: any) {
+    console.log('upload error: ');
+    console.log(event);
+  }
+
 
   public doClose(): void {
     this.dialog.hide();

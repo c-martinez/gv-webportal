@@ -5,8 +5,13 @@
   </ng-select>
 </div>
 
-<div [hidden]="selectedTab != 'upload'">
-  Uploader goes here.
+<div [hidden]="selectedTab != 'upload'" style="height: 40vh">
+  <dropzone style="width: 100%; height: 100%;" 
+    [config]="dropConfig" 
+    [message]="'Click or drag files here to upload'"
+    (success)="onUploadSuccess($event)"
+    (error)="onUploadError($event)"
+    ></dropzone>
 </div>
 
 <div [hidden]="selectedTab != 'circle'">

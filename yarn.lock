@@ -1553,6 +1553,10 @@ domutils@1.5.1:
     dom-serializer "0"
     domelementtype "1"
 
+dropzone@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.2.0.tgz#2fdf6ac6472f4c62d03d3e9fc22aaa0229d299de"
+
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -3429,6 +3433,12 @@ negotiator@0.6.1:
 ng-select@^1.0.0-rc.3:
   version "1.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/ng-select/-/ng-select-1.0.0-rc.3.tgz#0d6ca53a475a0301e6d01e0c0a5568e183cb7a0d"
+
+ngx-dropzone-wrapper@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/ngx-dropzone-wrapper/-/ngx-dropzone-wrapper-5.3.1.tgz#994b1a84d29346bc87c67c1ef014640f0dfbfd6b"
+  dependencies:
+    dropzone "^5.2.0"
 
 no-case@^2.2.0:
   version "2.3.2"
