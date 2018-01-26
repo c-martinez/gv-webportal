@@ -5,18 +5,25 @@ import { MdlDialogService } from '@angular-mdl/core';
 import { DataLayerCreatorComponent } from '../data-layer-creator/data-layer-creator.component';
 import { LayerService } from '../../services/layer.service';
 
+import { LayersService } from 'regis-layer-service';
+
 @Component({
   selector: 'app-layer-selector',
   templateUrl: './layer-selector.component.html',
   styleUrls: ['./layer-selector.component.css'],
-  providers: [LayerService]
+  providers: [LayerService, LayersService]
 })
 export class LayerSelectorComponent implements OnInit {
   public layers = this.layerService.getLayers();
 
-  constructor(private dialogService: MdlDialogService, private layerService: LayerService) { }
+  constructor(private dialogService: MdlDialogService,
+              private layerService: LayerService,
+              private layersService: LayersService
+            ) { }
 
   ngOnInit() {
+    console.log('Layers from service: ');
+    console.log(this.layersService.getLayers());
   }
 
   public toggleLayer(layer, active: boolean) {
