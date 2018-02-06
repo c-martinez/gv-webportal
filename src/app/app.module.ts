@@ -1,5 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { MdlModule, MdlIconModule } from '@angular-mdl/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +18,8 @@ import { MapComponent } from './components/map/map.component';
 import { LayerSelectorComponent } from './components/layer-selector/layer-selector.component';
 import { DataLayerCreatorComponent } from './components/data-layer-creator/data-layer-creator.component';
 
+import { LayersService } from 'regis-layers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +34,13 @@ import { DataLayerCreatorComponent } from './components/data-layer-creator/data-
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    HttpClientModule,
     SelectModule,
     LeafletModule.forRoot(),
-    DropzoneModule
+    DropzoneModule,
   ],
   entryComponents: [DataLayerCreatorComponent],
-  providers: [],
+  providers: [LayersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
