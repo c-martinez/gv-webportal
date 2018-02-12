@@ -6,7 +6,7 @@ import { tileLayer, latLng, Layer, geoJSON, polygon, circle, layerGroup } from '
 
 import { DataLayerCreatorComponent } from '../data-layer-creator/data-layer-creator.component';
 
-import { LayersService, GeoJsonLayer } from 'regis-layers';
+import { LayersService, GeoJsonLayer, GroupLayer, ImageLayer } from 'regis-layers';
 
 @Component({
   selector: 'app-layer-selector',
@@ -19,43 +19,24 @@ export class LayerSelectorComponent implements OnInit {
   constructor(private dialogService: MdlDialogService,
               private http: HttpClient,
               private layersService: LayersService
-            ) {
-      /*
-      circle1 = circle([46.8, -121.85], { radius: 100 });
-      circle2 = circle([46.92, -121.92], { radius: 100 })
-      polygon([[46.8, -121.85], [46.92, -121.92], [46.87, -121.8]]),
-      layerGroup([this.circle1, this.circle2]),
-      geoJSON(
-        ({
-          type: 'Polygon',
-          coordinates: [
-            [
-              [-121.6, 46.87],
-              [-121.5, 46.87],
-              [-121.5, 46.93],
-              [-121.6, 46.87]
-            ]]
-        }) as any,
-        { style: () => ({ color: '#ff7800' }) }
-      )*/
-  }
+            ) {}
 
   ngOnInit() {
     this.layersService.addLayer({ name: 'CircleLayer', id: 24, type: 'circle',  active: true });
     this.layersService.addLayer({ name: 'Polygon',     id: 25, type: 'polygon', active: true });
     this.layersService.addLayer(
-      new GeoJsonLayer(25, 'Layer N', true, 'http://localhost:4200/assets/provinces.geojson')
+      new GeoJsonLayer(26, 'Provinces', true, 'http://localhost:4200/assets/provinces.geojson')
+    );
+    this.layersService.addLayer(
+      new GroupLayer(27, 'Circles', true, 'http://localhost:4200/assets/demonecklace.json')
+    );
+    this.layersService.addLayer(
+      new ImageLayer(28, 'Svg', true, 'http://localhost:4200/assets/testsvg.svg', [[42, -100], [40, -110]])
     );
   }
 
   public toggleLayer(layer, active: boolean) {
-    console.log('Changed');
-    console.log(layer);
-    console.log(active);
-    if (active) {
-      console.log('We should be showing the layer...');
-      console.log(layer);
-    }
+    this.layersService.setLayerVisibility(layer, active);
   }
 
   public addLayer() {
