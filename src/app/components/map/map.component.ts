@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
       )
     ],
     zoom: 5,
-    center: latLng(46.879966, -121.726909)
+    center: latLng(45.00, 5.00)
   };
   public mapLayers = this.layersService.getMapLayers();
 

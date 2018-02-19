@@ -18,9 +18,6 @@
     "paths": {
       "@angular/*": [
         "node_modules/@angular/*"
-      ],
-      "regis-layer-service2": [
-        "node_modules/regis-layer-service2/*"
       ]
     }
   }
