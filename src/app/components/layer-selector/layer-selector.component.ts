@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 
 import { MdlDialogService } from '@angular-mdl/core';
 
@@ -12,16 +11,12 @@ import { LayersService } from 'regis-layers';
   templateUrl: './layer-selector.component.html',
   styleUrls: ['./layer-selector.component.css']
 })
-export class LayerSelectorComponent implements OnInit {
+export class LayerSelectorComponent {
   public layers = this.layersService.getLayers();
 
   constructor(private dialogService: MdlDialogService,
-              private http: HttpClient,
               private layersService: LayersService
             ) {}
-
-  ngOnInit() {
-  }
 
   public toggleLayer(layer, active: boolean) {
     this.layersService.setLayerVisibility(layer, active);

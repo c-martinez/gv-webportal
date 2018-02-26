@@ -18,7 +18,7 @@ import { MapComponent } from './components/map/map.component';
 import { LayerSelectorComponent } from './components/layer-selector/layer-selector.component';
 import { DataLayerCreatorComponent } from './components/data-layer-creator/data-layer-creator.component';
 
-import { LayersService } from 'regis-layers';
+import { LayersService, BackendService } from 'regis-layers';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,10 @@ import { LayersService } from 'regis-layers';
     DropzoneModule,
   ],
   entryComponents: [DataLayerCreatorComponent],
-  providers: [LayersService],
+  providers: [
+    LayersService,
+    BackendService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
