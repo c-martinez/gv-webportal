@@ -1,38 +1,49 @@
-<div>
+<div [hidden]=" ! showFor(PLUS_BUTTON)">
+  <!-- Colored mini FAB button -->
+  <button (click)="showLayerCreation()" mdl-button mdl-button-type="mini-fab" mdl-colored="primary">
+    <mdl-icon>add</mdl-icon>
+  </button>
+</div>
+
+<div [hidden]="showFor(PLUS_BUTTON)">
   <ng-select
       [options]="tabOptions"
-      [(ngModel)]="selectedTab">
+      [(ngModel)]="selectedTab"
+      (ngModelChange)="tabChanged($event)"
+      >
   </ng-select>
 </div>
 
-<div [hidden]="selectedTab != 'upload'" style="height: 40vh">
+<div [hidden]=" ! showFor(UPLOAD)" style="height: 40vh">
   <dropzone style="width: 100%; height: 100%;" 
-    [config]="dropConfig" 
+    [config]="dropConfig"
     [message]="'Click or drag files here to upload'"
     (success)="onUploadSuccess($event)"
     (error)="onUploadError($event)"
     ></dropzone>
 </div>
 
-<div [hidden]="selectedTab != 'circle'">
+<div [hidden]=" ! showFor(CIRCLE)">
   <div [formGroup]="circleForm">
-    <h3 class="mdl-dialog__title">Add circle</h3>
+    <!-- <h4 class="mdl-dialog__title"></h4> -->
   
     <div class="mdl-dialog__content">
-      <mdl-textfield  type="text" label="Center" formControlName="center" floating-label></mdl-textfield>
-      <br/>
-      <mdl-textfield type="text" label="Radius" formControlName="radius" floating-label></mdl-textfield>
+      <div>
+        <b>Add circle</b><br>
+        Drag-and-drop map markers to define a circle.
+      </div>
+      <div><b>Center: </b><div *ngIf="centerMarker !== undefined">{{ centerMarker.getLatLng() }}</div></div>
+      <div><b>Radius: </b><div *ngIf="radiusMarker !== undefined">{{ radiusMarker.getLatLng() }}</div></div>
     </div>
 
   </div>
 </div>
 
-<div [hidden]="selectedTab != 'freehand'">
-  Input options for free hand guide...
-</div>
-
-<div>
+<div [hidden]="showFor(PLUS_BUTTON)">
   <button
     mdl-button mdl-button-type="raised" mdl-colored="accent"
-    mdl-ripple (click)="doClose()">Create layer</button>
+    mdl-ripple (click)="doClose(true)">Create layer</button>
+    <button
+    mdl-button mdl-button-type="raised" mdl-colored="accent"
+    mdl-ripple (click)="doClose(false)">Cancel</button>
 </div>

@@ -17,6 +17,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MapComponent } from './components/map/map.component';
 import { LayerSelectorComponent } from './components/layer-selector/layer-selector.component';
 import { DataLayerCreatorComponent } from './components/data-layer-creator/data-layer-creator.component';
+import { SharedMapService } from './services/shared-map/shared-map.service';
 
 import { LayersService, BackendService } from 'regis-layers';
 
@@ -42,7 +43,8 @@ import { LayersService, BackendService } from 'regis-layers';
   entryComponents: [DataLayerCreatorComponent],
   providers: [
     LayersService,
-    BackendService
+    BackendService,
+    SharedMapService
   ],
   bootstrap: [AppComponent]
 })

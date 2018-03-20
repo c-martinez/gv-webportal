@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { tileLayer, latLng } from 'leaflet';
-import { divIcon, icon, marker, imageOverlay } from 'leaflet';
+import { divIcon, icon, marker, imageOverlay, Map } from 'leaflet';
 
 import { LayersService } from 'regis-layers';
+
+import { SharedMapService } from '../../services/shared-map/shared-map.service';
 
 @Component({
   selector: 'app-map',
@@ -24,9 +26,15 @@ export class MapComponent implements OnInit {
   };
   public mapLayers = this.layersService.getMapLayers();
 
-  constructor(private layersService: LayersService) {
-  }
+  constructor(
+              private layersService: LayersService,
+              private sharedMapService: SharedMapService
+              ) {}
 
   ngOnInit() {
+  }
+
+  onMapReady(theMap: Map) {
+    this.sharedMapService.registerMap(theMap);
   }
 }
