@@ -1,0 +1,11 @@
+<div>
+  <json-schema-form
+    loadExternalAssets="true"
+    [layout]="formLayout"
+    [schema]="formSchema"
+    [(data)]="formData"
+    (onChanges)="onChanges($event)"
+    (onSubmit)="onSubmit($event)">
+  </json-schema-form>
+  {{ formData | json}}
+</div>

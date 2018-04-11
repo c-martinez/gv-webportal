@@ -92,8 +92,12 @@ export class DataLayerCreatorComponent implements OnInit {
       }
     } else {
       switch (this.selectedTab) {
+        case this.UPLOAD:
+          const dropzone = this.dropComponentRef.directiveRef.dropzone;
+          dropzone.removeAllFiles();
+          break;
         case this.CIRCLE:
-        this.hideCircleMarkers();
+          this.hideCircleMarkers();
           break;
       }
     }
