@@ -15,6 +15,9 @@ import { MdlSelectModule } from '@angular-mdl/select';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 
 import { JsonSchemaFormModule, MaterialDesignFrameworkModule } from 'angular2-json-schema-form';
+import { JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, MaterialDesignFramework,
+  Framework } from 'angular2-json-schema-form';
+
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -24,6 +27,7 @@ import { DataLayerCreatorComponent } from './components/data-layer-creator/data-
 import { ThematicLayerComponent } from './components/thematic-layer/thematic-layer.component';
 
 import { SharedMapService } from './services/shared-map/shared-map.service';
+import { ComputeService } from './services/compute/compute.service';
 
 import { LayersService, BackendService } from 'regis-layers';
 
@@ -51,13 +55,22 @@ import 'hammerjs';
     LeafletModule.forRoot(),
     DropzoneModule,
     MaterialDesignFrameworkModule,
-    JsonSchemaFormModule.forRoot(MaterialDesignFrameworkModule),
+    {
+      ngModule: JsonSchemaFormModule,
+      providers: [
+          JsonSchemaFormService,
+          FrameworkLibraryService,
+          WidgetLibraryService,
+          {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+      ]
+    }
   ],
   entryComponents: [DataLayerCreatorComponent],
   providers: [
     LayersService,
     BackendService,
-    SharedMapService
+    SharedMapService,
+    ComputeService
   ],
   bootstrap: [AppComponent]
 })

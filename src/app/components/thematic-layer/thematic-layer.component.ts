@@ -7,17 +7,18 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/map';
 
 import { LayersService } from 'regis-layers';
+import { ComputeService } from '../../services/compute/compute.service';
 
 @Component({
   selector: 'app-thematic-layer',
   templateUrl: './thematic-layer.component.html',
   styleUrls: [
-    './thematic-layer.component.css',
-    '../../../../node_modules/mdl-select-component/mdl-selectfield.min.css'
+    './thematic-layer.component.css'
   ]
 })
 export class ThematicLayerComponent implements OnInit {
   private static NECKLACE_ALGORITHM = 'algo-necklace';
+  private static NECKLACE_DATA = 'necklace-data';
 
   public formSchema: any = {
     'type': 'object',
@@ -58,7 +59,7 @@ export class ThematicLayerComponent implements OnInit {
       'message': '<b>Algorithm parameters</b>'
     },
     {
-      'key': 'necklace-data',
+      'key': ThematicLayerComponent.NECKLACE_DATA,
       'condition': this.showForNecklace
     },
     {
@@ -76,6 +77,7 @@ export class ThematicLayerComponent implements OnInit {
 
   constructor(
     private layersService: LayersService,
+    private computeService: ComputeService,
     private http: HttpClient
   ) {}
 
@@ -91,7 +93,7 @@ export class ThematicLayerComponent implements OnInit {
 
   private showForNecklaceDataColumn(data): boolean {
     return data.algorithm === ThematicLayerComponent.NECKLACE_ALGORITHM &&
-      data['necklace-data'];
+      data[ThematicLayerComponent.NECKLACE_DATA];
   }
 
   private setNecklaceLayers(layers) {
@@ -113,7 +115,7 @@ export class ThematicLayerComponent implements OnInit {
         const: layer.id
       };
     });
-    this.formSchema['properties']['necklace-data']['oneOf'] = dataLayers;
+    this.formSchema['properties'][ThematicLayerComponent.NECKLACE_DATA]['oneOf'] = dataLayers;
   }
 
   /**
@@ -156,16 +158,21 @@ export class ThematicLayerComponent implements OnInit {
 
   public onChanges(changes) {
     if (changes['algorithm'] === ThematicLayerComponent.NECKLACE_ALGORITHM &&
-        changes['necklace-data'] !== this.knownValues['necklace-data']) {
+        changes[ThematicLayerComponent.NECKLACE_DATA] !== this.knownValues[ThematicLayerComponent.NECKLACE_DATA]) {
       // Keep track of know form values to avoid multiple calls to onChanges
       // `formData` should serve the same purpose but is updated afterwards
-      this.knownValues['necklace-data'] = changes['necklace-data'];
-      this.loadColumnsForDataLayer(this.knownValues['necklace-data']);
+      this.knownValues[ThematicLayerComponent.NECKLACE_DATA] = changes[ThematicLayerComponent.NECKLACE_DATA];
+      this.loadColumnsForDataLayer(this.knownValues[ThematicLayerComponent.NECKLACE_DATA]);
     }
   }
 
   public onSubmit(event) {
-    console.log('OnSubmit has been called...');
-    console.log(this.formData);
+    this.computeService.submit(this.formData).subscribe(
+      data => {
+        // Process response
+        console.log(data);
+        this.layersService.loadLayers();
+      }
+    );
   }
 }

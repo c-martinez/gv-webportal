@@ -1,4 +1,4 @@
-<div>
+<div class="mdl-card__actions">
   <json-schema-form
     loadExternalAssets="true"
     [layout]="formLayout"
@@ -7,5 +7,4 @@
     (onChanges)="onChanges($event)"
     (onSubmit)="onSubmit($event)">
   </json-schema-form>
-  {{ formData | json}}
 </div>
