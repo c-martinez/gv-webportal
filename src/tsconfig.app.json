@@ -12,8 +12,13 @@
       ]
     }
   },
+  "include":[
+    "./**/*.ts",
+    "../node_modules/regis-layers/**/*.ts"
+  ],
   "exclude": [
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "../node_modules/regis-layers/**/*.spec.ts"
   ]
 }
