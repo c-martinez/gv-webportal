@@ -33,6 +33,16 @@ import { LayersService, BackendService } from 'regis-layers';
 
 import 'hammerjs';
 
+const JsonSchemaFormModuleImport = {
+  ngModule: JsonSchemaFormModule,
+  providers: [
+      JsonSchemaFormService,
+      FrameworkLibraryService,
+      WidgetLibraryService,
+      {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+  ]
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,15 +65,7 @@ import 'hammerjs';
     LeafletModule.forRoot(),
     DropzoneModule,
     MaterialDesignFrameworkModule,
-    {
-      ngModule: JsonSchemaFormModule,
-      providers: [
-          JsonSchemaFormService,
-          FrameworkLibraryService,
-          WidgetLibraryService,
-          {provide: Framework, useClass: MaterialDesignFramework, multi: true}
-      ]
-    }
+    JsonSchemaFormModuleImport
   ],
   entryComponents: [DataLayerCreatorComponent],
   providers: [

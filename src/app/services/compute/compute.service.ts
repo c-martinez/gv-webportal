@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { config } from '../../../gv-portal.config';
+
 @Injectable()
 export class ComputeService {
-  private static computeServiceUrl = 'http://localhost:4201/compute/execute/';
+  private static computeServiceUrl = config.urls.computeService;
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {}
 
   public submit(data) {
     console.log('Compute service: Submit compute job and generate new layer...');

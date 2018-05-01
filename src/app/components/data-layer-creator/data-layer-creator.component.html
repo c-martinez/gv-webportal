@@ -2,7 +2,7 @@
   <!-- Colored mini FAB button -->
   <button (click)="showLayerCreation()" mdl-button mdl-button-type="mini-fab" mdl-colored="primary">
     <mdl-icon>add</mdl-icon>
-  </button>
+  </button> 
 </div>
 
 <div [hidden]="showFor(PLUS_BUTTON)">
@@ -12,14 +12,22 @@
       (ngModelChange)="tabChanged($event)"
       >
   </ng-select>
+  <json-schema-form
+    loadExternalAssets="true"
+    [layout]="formLayout"
+    [schema]="formSchema"
+    [options]="formOptions"
+    [(data)]="formData"
+    (onChanges)="formDataChanges($event)">
+  </json-schema-form>
 </div>
 
 <div [hidden]=" ! showFor(UPLOAD)" style="height: 40vh">
   <dropzone style="width: 100%; height: 100%;" 
-    [config]="dropConfig"
+    [config]="uploadCreator.dropConfig"
     [message]="'Click or drag files here to upload'"
-    (success)="onUploadSuccess($event)"
-    (error)="onUploadError($event)"
+    (success)="uploadCreator.onUploadSuccess($event)"
+    (error)="uploadCreator.onUploadError($event)"
     ></dropzone>
 </div>
 
